@@ -1,29 +1,90 @@
-# Create T3 App
+# Contributing to the Buycott Project
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Thank you for your interest in contributing to the Buycott project! This guide will help you get started with setting up the project on your local machine.
 
-## What's next? How do I make an app with this?
+## Prerequisites
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Before you begin, make sure you have the following installed on your system:
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- Node.js [install Node.js](https://nodejs.org/en/download/package-manager)
+- pnpm [install pnpm](https://pnpm.io/installation)
+- Docker [install Docker](https://docs.docker.com/get-docker/)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Getting Started
 
-## Learn More
+To set up the Buycott project on your local machine, follow these steps:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+1. Clone the repository:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+   ```bash
+   git clone https://github.com/rizkyfauziiilmi/buycott.git
+   ```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+2. Navigate to the project directory:
 
-## How do I deploy this?
+   ```bash
+   cd buycott
+   ```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+3. Install the dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+4. Set up environment variables:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+5. Set up the database:
+   - use docker to start the database (docker required)
+   ```bash
+    ./start-database.sh
+   ```
+   - or use your own database
+     copy database url to .env file
+   ```bash
+    DATABASE_URL=your_database_url
+   ```
+6. Run the database migrations:
+
+   ```bash
+   pnpm db:push
+   ```
+
+7. Set up the seed data:
+
+   ```bash
+   pnpm db:seed
+   ```
+
+8. Set up Authentication Environment Variables:
+    - To obtain the client id and secret see [Auth js oauth docs](https://authjs.dev/getting-started/authentication/oauth) 
+    - Filled with your own client id and secret (.env file)
+   ```bash
+    DISCORD_CLIENT_ID=""
+    DISCORD_CLIENT_SECRET=""
+    ```
+
+9. Start the development server:
+
+   ```bash
+   pnpm run dev
+   ```
+
+10. Open your browser and visit `http://localhost:3000` to see the Buycott application running.
+
+## Contributing Guidelines
+
+Please follow these guidelines when contributing to the Buycott project:
+
+- Fork the repository and create a new branch for your feature or bug fix.
+- Submit a pull request with a clear description of your changes.
+
+## Feedback and Support
+
+If you have any questions or need assistance, please feel free to reach out to us on our Discord server.
+
+We appreciate your contributions and look forward to working with you!
