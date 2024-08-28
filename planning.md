@@ -5,6 +5,7 @@
 The platform aims to create a community-driven system for boycotting products that are associated with the Israeli occupation of Palestine. Users can contribute by adding, verifying, and managing products on the platform.
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Features](#features)
 - [Milestones for Platform Implementation](#milestones-for-platform-implementation)
@@ -59,59 +60,66 @@ The platform aims to create a community-driven system for boycotting products th
 
 ## Milestones for Platform Implementation
 
-- [ ] **Milestone 1: User Registration and Authentication**
-   - [ ] Implement user registration functionality.
-   - [ ] Implement user login functionality.
-   - [ ] Ensure secure authentication mechanisms (e.g., password hashing, token-based authentication).
-   - [ ] Design and develop user-friendly interfaces for registration and login.
+- [x] **Milestone 1: User Registration and Authentication**
+
+  - [ ] Implement user registration functionality. (t3 not support yet auth.js, so we must implement it manually)
+  - [x] Implement user login functionality.
+  - [ ] Ensure secure authentication mechanisms (e.g., password hashing, token-based authentication). (t3 not support yet auth.js, so we must implement it manually)
+  - [x] Design and develop user-friendly interfaces for registration and login.
 
 - [ ] **Milestone 2: Search and Filtering**
-   - [ ] Implement search functionality for products.
-   - [ ] Develop filtering options to refine search results.
-   - [ ] Design and develop user-friendly interfaces for searching and filtering.
+
+  - [ ] Implement search functionality for products.
+  - [ ] Develop filtering options to refine search results.
+  - [ ] Design and develop user-friendly interfaces for searching and filtering.
 
 - [ ] **Milestone 3: Product Management**
-   - [ ] Develop functionality for users to add new products.
-   - [ ] Implement product categorization based on type and origin.
-   - [ ] Enable users to verify the accuracy of product information.
-   - [ ] Design and develop user-friendly interfaces for adding products and verifying information.
+
+  - [ ] Develop functionality for users to add new products.
+  - [ ] Implement product categorization based on type and origin.
+  - [ ] Enable users to verify the accuracy of product information.
+  - [ ] Design and develop user-friendly interfaces for adding products and verifying information.
 
 - [ ] **Milestone 4: Community Interaction**
-   - [ ] Implement commenting functionality for products.
-   - [ ] Develop a rating system to highlight popular products.
-   - [ ] Design and develop user-friendly interfaces for commenting and rating.
+
+  - [ ] Implement commenting functionality for products.
+  - [ ] Develop a rating system to highlight popular products.
+  - [ ] Design and develop user-friendly interfaces for commenting and rating.
 
 - [ ] **Milestone 5: Reporting and Moderation**
-   - [ ] Implement reporting functionality for inaccurate or misleading product information.
-   - [ ] Develop moderation tools for reviewing and taking action on reported content.
-   - [ ] Design and develop user-friendly interfaces for reporting and moderation.
+
+  - [ ] Implement reporting functionality for inaccurate or misleading product information.
+  - [ ] Develop moderation tools for reviewing and taking action on reported content.
+  - [ ] Design and develop user-friendly interfaces for reporting and moderation.
 
 - [ ] **Milestone 6: Notifications**
-   - [ ] Implement notification system for product updates, comments, and moderation actions.
-   - [ ] Design and develop user-friendly interfaces for displaying notifications.
+
+  - [ ] Implement notification system for product updates, comments, and moderation actions.
+  - [ ] Design and develop user-friendly interfaces for displaying notifications.
 
 - [ ] **Milestone 7: Role-based Access Control (RBAC)**
-   - [ ] Implement RBAC for Admin and Guest roles.
-   - [ ] Ensure Admins have full access to all features and functionalities.
-   - [ ] Restrict Guests to browsing, searching, viewing product details, and reading comments.
-   - [ ] Design and develop user-friendly interfaces for role-based access control.
+
+  - [ ] Implement RBAC for Admin and Guest roles.
+  - [ ] Ensure Admins have full access to all features and functionalities.
+  - [ ] Restrict Guests to browsing, searching, viewing product details, and reading comments.
+  - [ ] Design and develop user-friendly interfaces for role-based access control.
 
 - [ ] **Milestone 8: UI Development**
-   - [ ] Design and develop a landing page for the platform.
-   - [ ] Create user-friendly interfaces for all features and functionalities.
+
+  - [ ] Design and develop a landing page for the platform.
+  - [ ] Create user-friendly interfaces for all features and functionalities.
 
 - [ ] **Milestone 9: Testing and Deployment**
-   - [ ] Conduct thorough testing of all implemented features.
-   - [ ] Fix any bugs or issues identified during testing.
-   - [ ] Deploy the platform to a production environment.
+
+  - [ ] Conduct thorough testing of all implemented features.
+  - [ ] Fix any bugs or issues identified during testing.
+  - [ ] Deploy the platform to a production environment.
 
 - [ ] **Milestone 10: Post-Deployment Monitoring and Maintenance**
-   - [ ] Monitor platform performance and user feedback.
-   - [ ] Implement necessary updates and improvements based on feedback and performance metrics.
+  - [ ] Monitor platform performance and user feedback.
+  - [ ] Implement necessary updates and improvements based on feedback and performance metrics.
 
 By following these milestones, you can systematically implement and complete the platform.
-
-
 
 ## Conclusion
 
