@@ -2,9 +2,9 @@
 
 import {
   Bell,
-  Bug,
   HeartHandshake,
   Home,
+  MessageCircle,
   MessageCircleWarning,
   Settings,
   ShoppingBag,
@@ -22,49 +22,49 @@ interface Button {
   externalLink?: string;
 }
 
+const buttons: Button[] = [
+  {
+    title: "Home",
+    icon: <Home className="mr-2 size-5" />,
+    type: "menu",
+  },
+  {
+    title: "Search Product",
+    icon: <ShoppingBag className="mr-2 size-5" />,
+    type: "menu",
+  },
+  {
+    title: "Report Product",
+    icon: <MessageCircleWarning className="mr-2 size-5" />,
+    type: "menu",
+  },
+  {
+    title: "Notification",
+    icon: <Bell className="mr-2 size-5" />,
+    type: "menu",
+  },
+  {
+    title: "Settings",
+    icon: <Settings className="mr-2 size-5" />,
+    type: "other",
+  },
+  {
+    title: "Send a Feedback",
+    icon: <MessageCircle className="mr-2 size-5" />,
+    type: "other",
+    externalLink: "https://github.com/rizkyfauziilmi/buycott/issues/new",
+  },
+  {
+    title: "Join as a Volunteer",
+    icon: <HeartHandshake className="mr-2 size-5" />,
+    type: "other",
+    externalLink: "https://techforpalestine.org/",
+  },
+];
+
 export const SidebarNavigation = () => {
   const router = useRouter();
   const pathname = usePathname();
-
-  const buttons: Button[] = [
-    {
-      title: "Home",
-      icon: <Home className="mr-2 size-5" />,
-      type: "menu",
-    },
-    {
-      title: "Search Product",
-      icon: <ShoppingBag className="mr-2 size-5" />,
-      type: "menu",
-    },
-    {
-      title: "Report Product",
-      icon: <MessageCircleWarning className="mr-2 size-5" />,
-      type: "menu",
-    },
-    {
-      title: "Notification",
-      icon: <Bell className="mr-2 size-5" />,
-      type: "menu",
-    },
-    {
-      title: "Settings",
-      icon: <Settings className="mr-2 size-5" />,
-      type: "menu",
-    },
-    {
-      title: "Report a bug",
-      icon: <Bug className="mr-2 size-5" />,
-      type: "other",
-      externalLink: "https://github.com/rizkyfauziilmi/buycott/issues/new",
-    },
-    {
-      title: "Join as a volunteer",
-      icon: <HeartHandshake className="mr-2 size-5" />,
-      type: "other",
-      externalLink: "https://techforpalestine.org/",
-    },
-  ];
 
   const isActiveButton = (buttonTitle: string): boolean => {
     // if the button is home and the current path is home
@@ -97,7 +97,7 @@ export const SidebarNavigation = () => {
       <p className="mb-2 font-semibold text-muted-foreground">Menu</p>
       <div className="space-y-4">
         {buttons.map((button, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={button.title}>
             <Button
               className={cn(
                 isActiveButton(button.title) &&
