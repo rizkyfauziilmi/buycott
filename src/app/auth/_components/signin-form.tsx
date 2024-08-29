@@ -24,7 +24,7 @@ export const SignInForm = () => {
   }
 
   return (
-    <div className="w-96 rounded-md px-4 shadow-lg">
+    <div className="w-96 rounded-md p-4 shadow-lg border-[1px]">
       <div className="text-center">
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
           Welcome back!
@@ -33,7 +33,7 @@ export const SignInForm = () => {
           Please choose a provider to sign in
         </p>
       </div>
-      <div className="my-6 flex justify-center gap-4">
+      <div className="mt-6 flex justify-center gap-4">
         <Button
           variant="outline"
           size="lg"

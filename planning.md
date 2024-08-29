@@ -106,6 +106,9 @@ The platform aims to create a community-driven system for boycotting products th
 
 - [ ] **Milestone 8: UI Development**
 
+  - [x] Create sidebar
+  - [ ] make sidebar mobile responsive
+  - [ ] make sidebar on resize to minSize (5) make it responsive
   - [ ] Design and develop a landing page for the platform.
   - [ ] Create user-friendly interfaces for all features and functionalities.
 
