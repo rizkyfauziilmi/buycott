@@ -58,3 +58,21 @@ export function abbreviateEmail(email: string): string {
 
     return abbreviatedUsername + '@' + domain;
 }
+
+/**
+ * Capitalizes the first letter of each word in a string.
+ * 
+ * @param str - The string to capitalize.
+ * @returns The capitalized string.
+ */
+export function capitalizeString(str: string): string {
+    const words = str.toLowerCase().split(' ');
+    let capitalizedString = '';
+
+    for (const word of words) {
+        capitalizedString += word.charAt(0).toUpperCase() + word.slice(1) + ' ';
+    }
+
+    return capitalizedString.trim();
+}
+

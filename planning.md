@@ -69,7 +69,8 @@ The platform aims to create a community-driven system for boycotting products th
 
 - [ ] **Milestone 2: Search and Filtering**
 
-  - [ ] Implement search functionality for products.
+  - [X] Implement search functionality for products.
+  - [ ] Add Infinite Scroll to the search results.
   - [ ] Develop filtering options to refine search results.
   - [ ] Design and develop user-friendly interfaces for searching and filtering.
 
