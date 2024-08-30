@@ -5,9 +5,10 @@ import { Input } from "~/components/ui/input";
 
 interface SearchProductTopbarProps {
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  inputValue: string | undefined;
 }
 
-export const SearchProductTopbar = ({ handleInputChange }: SearchProductTopbarProps) => {
+export const SearchProductTopbar = ({ handleInputChange, inputValue }: SearchProductTopbarProps) => {
   return (
     <div className="flex items-center justify-between py-4">
       <Button variant="secondary" className="rounded-full">
@@ -18,7 +19,8 @@ export const SearchProductTopbar = ({ handleInputChange }: SearchProductTopbarPr
         <Input
           placeholder="Search products..."
           className="rounded-full pl-8"
-          onChange={(e) => handleInputChange(e)}
+          onChange={handleInputChange}
+          value={inputValue}
         />
       </div>
     </div>
