@@ -10,7 +10,8 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { Fragment } from "react";
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import { cn } from "~/lib/utils";
@@ -62,7 +63,13 @@ const buttons: Button[] = [
   },
 ];
 
-export const SidebarNavigation = () => {
+interface SidebarNavigationProps {
+  setIsSheetOpen?: Dispatch<SetStateAction<boolean>>;
+}
+
+export const SidebarNavigation = ({
+  setIsSheetOpen = undefined,
+}: SidebarNavigationProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -81,8 +88,15 @@ export const SidebarNavigation = () => {
   ): void => {
     // if there is external link, open it in new tab
     if (externalLink) {
+      if (setIsSheetOpen) {
+        setIsSheetOpen(false);
+      }
       window.open(externalLink, "_blank");
       return;
+    }
+
+    if (setIsSheetOpen) {
+      setIsSheetOpen(false);
     }
 
     if (buttonTitle.toLowerCase() === "home") {
@@ -97,7 +111,7 @@ export const SidebarNavigation = () => {
       <p className="mb-2 font-semibold text-muted-foreground">Menu</p>
       <div className="space-y-4">
         {buttons.map((button, index) => (
-          <React.Fragment key={button.title}>
+          <Fragment key={button.title}>
             <Button
               className={cn(
                 isActiveButton(button.title) &&
@@ -113,7 +127,7 @@ export const SidebarNavigation = () => {
             </Button>
             {/* after notification button, show separator */}
             {button.type === "menu" && index === 3 && <Separator />}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

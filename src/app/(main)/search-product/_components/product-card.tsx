@@ -64,7 +64,7 @@ export const ProductCard = ({
             src={product.logo_url ?? ""}
             alt={""}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
             placeholder="blur"
             blurDataURL={product.logo_url}
             className="h-full w-full rounded-2xl object-cover object-center"

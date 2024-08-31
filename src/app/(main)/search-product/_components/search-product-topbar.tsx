@@ -100,9 +100,9 @@ export const SearchProductTopbar = ({
 
   return (
     <>
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col-reverse items-start justify-between gap-4 md:flex-row md:gap-0">
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 md:flex-nowrap">
             <Button
               variant="secondary"
               className="rounded-full"
@@ -177,12 +177,12 @@ export const SearchProductTopbar = ({
             <Skeleton className="h-4 w-[100px]" />
           )}
         </div>
-        <div className="flex items-center gap-2">
-          <div className="relative">
+        <div className="flex w-full items-center gap-2 md:w-fit">
+          <div className="relative w-full md:w-fit">
             <Search className="absolute left-2 size-4 h-full" />
             <Input
               placeholder="Search products..."
-              className="rounded-full pl-8"
+              className="w-full rounded-full pl-8"
               onChange={handleInputChange}
               value={inputValue}
             />
