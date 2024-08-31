@@ -49,7 +49,7 @@ export const SearchProductContent = () => {
   const isProductsNotFound = data?.pages[0]?.items.length === 0;
 
   return (
-    <div className="flex flex-col gap-4 py-4">
+    <div className="flex flex-col gap-4 md:py-4 py-0">
       <SearchProductTopbar
         handleInputChange={handleInputChange}
         inputValue={searchQuery.name}

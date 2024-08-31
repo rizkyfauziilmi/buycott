@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 import {
   Bell,
@@ -72,7 +73,13 @@ const buttons: Button[] = [
   },
 ];
 
-export const SidebarCommand = () => {
+interface SidebarCommandProps {
+  setIsSheetOpen?: Dispatch<SetStateAction<boolean>>;
+}
+
+export const SidebarCommand = ({
+  setIsSheetOpen = undefined,
+}: SidebarCommandProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -106,8 +113,15 @@ export const SidebarCommand = () => {
 
     // if there is external link, open it in new tab
     if (externalLink) {
+      if (setIsSheetOpen) {
+        setIsSheetOpen(false);
+      }
       window.open(externalLink, "_blank");
       return;
+    }
+
+    if (setIsSheetOpen) {
+      setIsSheetOpen(false);
     }
 
     if (buttonTitle.toLowerCase() === "home") {

@@ -7,8 +7,8 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { Toaster } from "~/components/ui/sonner";
 
 import { ThemeProvider } from "~/components/providers/theme-provider";
-import { ResizableSidebar } from "./_components/sidebar/resizable-sidebar";
-
+import { Sidebar } from "./_components/sidebar/sidebar";
+import { Topbar } from "./_components/topbar";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -29,7 +29,15 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ResizableSidebar>{children}</ResizableSidebar>
+            <div className="flex flex-col md:flex-row">
+              <div className="hidden w-1/4 md:block">
+                <Sidebar />
+              </div>
+              <div className="md:hidden sticky bg-background z-50 top-0">
+                <Topbar />
+              </div>
+              <div className="w-full md:w-3/4">{children}</div>
+            </div>
             <Toaster />
           </ThemeProvider>
         </TRPCReactProvider>
