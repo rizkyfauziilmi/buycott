@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useDebounce } from "use-debounce";
 import type { z } from "zod";
 import { api } from "~/trpc/react";
-
 import { SearchProductTopbar } from "./search-product-topbar";
 import { ProductGrid } from "./product-grid";
 
@@ -16,9 +15,10 @@ export const SearchProductContent = () => {
     z.infer<typeof SearchProductSchema>
   >({
     name: "",
+    limit: 9,
   });
 
-  const [debounceName] = useDebounce(searchQuery.name, 300)
+  const [debounceName] = useDebounce(searchQuery.name, 300);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -28,22 +28,36 @@ export const SearchProductContent = () => {
     }));
   };
 
-  const products = api.product.search.useQuery(
-    {
-      name: debounceName,
-    },
-    {
-      enabled: true,
-    },
-  );
+  const { data, fetchNextPage, isFetching, hasNextPage } =
+    api.product.search.useInfiniteQuery(
+      {
+        limit: searchQuery.limit,
+        name: debounceName,
+      },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+        initialCursor: 1,
+      },
+    );
+
+  const handleFetchNextPage = async () => {
+    await fetchNextPage();
+  };
 
   return (
     <div>
       <SearchProductTopbar
         handleInputChange={handleInputChange}
         inputValue={searchQuery.name}
+        totalProducts={data?.pages[0]?.totalProducts}
+        isProductsNotFound={data?.pages[0]?.items.length === 0}
       />
-      <ProductGrid products={products.data} isLoading={products.isLoading} />
+      <ProductGrid
+        data={data}
+        isLoading={isFetching}
+        fetchNextPage={handleFetchNextPage}
+        hasNextPage={hasNextPage}
+      />
     </div>
   );
 };

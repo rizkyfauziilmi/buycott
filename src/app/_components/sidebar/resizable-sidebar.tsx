@@ -14,7 +14,7 @@ export const ResizableSidebar = ({
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="h-screen rounded-lg border"
+      className="h-screen w-screen overflow-hidden"
     >
       <ResizablePanel defaultSize={20} minSize={20}>
         <Sidebar />

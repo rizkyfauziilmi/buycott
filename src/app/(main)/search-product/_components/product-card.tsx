@@ -13,14 +13,46 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { cn } from "~/lib/utils";
-import MarkdownToReact from "~/components/markdown-to-react"; 
+import MarkdownToReact from "~/components/markdown-to-react";
+import { useEffect, useRef } from "react";
+import { useElementVisibility } from "~/app/hooks/use-observer";
+import { toast } from "sonner";
+import { XCircle } from "lucide-react";
 interface ProductCardProps {
   product: Product;
+  isLastItem: boolean;
+  isLastNextCursor: boolean;
+  fetchNextPage: () => Promise<void>;
+  hasNextPage: boolean;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({
+  product,
+  isLastItem,
+  isLastNextCursor,
+  fetchNextPage,
+  hasNextPage,
+}: ProductCardProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useElementVisibility(ref);
+
+  useEffect(() => {
+    if (isVisible && isLastItem && isLastNextCursor && hasNextPage) {
+      fetchNextPage()
+        .then(() => {
+          console.log("Fetched next page");
+        })
+        .catch((error) => {
+          toast("Failed to fetch next page", {
+            description: `Error: ${error}`,
+            icon: <XCircle className="size-4" />,
+          });
+        });
+    }
+  }, [isVisible, isLastItem, isLastNextCursor, fetchNextPage, hasNextPage]);
+
   return (
-    <div key={product.id} className="rounded-2xl border-[1px]">
+    <div ref={ref} key={product.id} className="rounded-2xl border-[1px]">
       <div
         className={cn(
           !product.logo_url && "bg-muted",
