@@ -63,8 +63,8 @@ export const ProductCard = ({
           <Image
             src={product.logo_url ?? ""}
             alt={""}
-            objectFit="cover"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             placeholder="blur"
             blurDataURL={product.logo_url}
             className="left-0 top-0 h-full w-full rounded-2xl object-cover object-center"

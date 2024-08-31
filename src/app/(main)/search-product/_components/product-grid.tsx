@@ -2,6 +2,7 @@ import type { Product } from "@prisma/client";
 import { ProductCard } from "./product-card";
 import type { InfiniteData } from "@tanstack/react-query";
 import { ProductCardSkeleton } from "./product-card-skeleton";
+import { ProductCardNotFound } from "./product-card-not-found";
 
 interface ProductGridProps {
   data:
@@ -25,8 +26,10 @@ export const ProductGrid = ({
   fetchNextPage,
   hasNextPage,
 }: ProductGridProps) => {
-  if (data?.pages[0]?.items.length === 0) {
-    return <div>Not product found</div>;
+  const isProductsNotFound = data?.pages[0]?.items.length === 0;
+
+  if (isProductsNotFound) {
+    return <ProductCardNotFound />;
   }
 
   const renderProduct = () => {
@@ -34,9 +37,9 @@ export const ProductGrid = ({
       return page.items.map((product) => {
         // last product in the page
         const isLastItem =
-          page.nextCursor === undefined
-            ? false
-            : page.nextCursor - 1 === product.id;
+          page.items.indexOf(product) === page.items.length - 1;
+
+        console.log(page.nextCursor);
 
         // last product in all pages
         const isLastNextCursor =
