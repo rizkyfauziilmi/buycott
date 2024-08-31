@@ -39,8 +39,6 @@ export const ProductGrid = ({
         const isLastItem =
           page.items.indexOf(product) === page.items.length - 1;
 
-        console.log(page.nextCursor);
-
         // last product in all pages
         const isLastNextCursor =
           data.pages?.slice(-1)[0]?.items?.slice(-1)[0]?.id === product.id;
@@ -65,7 +63,7 @@ export const ProductGrid = ({
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
       {renderProduct()}
       {isLoading &&
         Array.from({ length: 9 }).map((_, index) => (

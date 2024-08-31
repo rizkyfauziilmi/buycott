@@ -10,13 +10,13 @@ import { api } from "~/trpc/react";
 import { SearchProductTopbar } from "./search-product-topbar";
 import { ProductGrid } from "./product-grid";
 
-// TODO: Implement filter products
 export const SearchProductContent = () => {
   const [searchQuery, setSearchQuery] = useState<
     z.infer<typeof SearchProductSchema>
   >({
     name: "",
     limit: 9,
+    status: undefined,
   });
 
   const [debounceName] = useDebounce(searchQuery.name, 300);
@@ -34,6 +34,8 @@ export const SearchProductContent = () => {
       {
         limit: searchQuery.limit,
         name: debounceName,
+        status: searchQuery.status,
+        categories: searchQuery.categories,
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -47,12 +49,14 @@ export const SearchProductContent = () => {
   const isProductsNotFound = data?.pages[0]?.items.length === 0;
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 py-4">
       <SearchProductTopbar
         handleInputChange={handleInputChange}
         inputValue={searchQuery.name}
         totalProducts={data?.pages[0]?.totalProducts}
         isProductsNotFound={isProductsNotFound}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
       <ProductGrid
         data={data}

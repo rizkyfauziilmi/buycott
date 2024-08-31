@@ -67,7 +67,7 @@ export const ProductCard = ({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             placeholder="blur"
             blurDataURL={product.logo_url}
-            className="left-0 top-0 h-full w-full rounded-2xl object-cover object-center"
+            className="h-full w-full rounded-2xl object-cover object-center"
           />
         ) : (
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">

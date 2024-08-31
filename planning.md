@@ -67,12 +67,13 @@ The platform aims to create a community-driven system for boycotting products th
   - [ ] Ensure secure authentication mechanisms (e.g., password hashing, token-based authentication). (t3 not support yet auth.js, so we must implement it manually)
   - [x] Design and develop user-friendly interfaces for registration and login.
 
-- [ ] **Milestone 2: Search and Filtering**
+- [X] **Milestone 2: Search and Filtering**
 
   - [X] Implement search functionality for products.
   - [X] Add Infinite Scroll to the search results.
-  - [ ] Develop filtering options to refine search results.
-  - [ ] Design and develop user-friendly interfaces for searching and filtering.
+  - [X] Develop filtering options to refine search results.
+  - [ ] Add more filtering and sorting.
+  - [X] Design and develop user-friendly interfaces for searching and filtering.
 
 - [ ] **Milestone 3: Product Management**
 
