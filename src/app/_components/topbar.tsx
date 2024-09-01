@@ -10,10 +10,10 @@ import {
   SheetTitle,
 } from "~/components/ui/sheet";
 import { Sidebar } from "./sidebar/sidebar";
-import { useState } from "react";
+import { useSheetStore } from "../stores/use-sheet-store";
 
 export const Topbar = () => {
-  const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+  const { isOpen, setIsOpen } = useSheetStore();
 
   return (
     <div className="flex items-center justify-between border-b p-4">
@@ -21,14 +21,10 @@ export const Topbar = () => {
         <div className="h-8 w-8 rounded-md bg-muted"></div>
         <h1 className="ml-2 text-xl font-bold">Buycott</h1>
       </div>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setIsSheetOpen(true)}
-      >
+      <Button variant="outline" size="icon" onClick={() => setIsOpen(true)}>
         <Menu className="size-4" />
       </Button>
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent className="overflow-y-auto">
           <SheetHeader className="pb-4">
             <SheetTitle>Menu</SheetTitle>
@@ -36,7 +32,7 @@ export const Topbar = () => {
               Here you can find all the options to navigate through the app
             </SheetDescription>
           </SheetHeader>
-          <Sidebar setIsSheetOpen={setIsSheetOpen} />
+          <Sidebar />
         </SheetContent>
       </Sheet>
     </div>
