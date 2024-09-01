@@ -10,8 +10,8 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import type { Dispatch, SetStateAction } from "react";
 import { Fragment } from "react";
+import { useSheetStore } from "~/app/stores/use-sheet-store";
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import { cn } from "~/lib/utils";
@@ -63,15 +63,10 @@ const buttons: Button[] = [
   },
 ];
 
-interface SidebarNavigationProps {
-  setIsSheetOpen?: Dispatch<SetStateAction<boolean>>;
-}
-
-export const SidebarNavigation = ({
-  setIsSheetOpen = undefined,
-}: SidebarNavigationProps) => {
+export const SidebarNavigation = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const { setIsOpen } = useSheetStore();
 
   const isActiveButton = (buttonTitle: string): boolean => {
     // if the button is home and the current path is home
@@ -88,16 +83,11 @@ export const SidebarNavigation = ({
   ): void => {
     // if there is external link, open it in new tab
     if (externalLink) {
-      if (setIsSheetOpen) {
-        setIsSheetOpen(false);
-      }
       window.open(externalLink, "_blank");
       return;
     }
 
-    if (setIsSheetOpen) {
-      setIsSheetOpen(false);
-    }
+    setIsOpen(false);
 
     if (buttonTitle.toLowerCase() === "home") {
       router.push("/");

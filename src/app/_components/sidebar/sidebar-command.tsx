@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Dispatch, SetStateAction } from "react";
 
 import {
   Bell,
@@ -25,6 +24,7 @@ import {
   CommandSeparator,
 } from "~/components/ui/command";
 import { usePathname, useRouter } from "next/navigation";
+import { useSheetStore } from "~/app/stores/use-sheet-store";
 
 interface Button {
   title: string;
@@ -73,16 +73,11 @@ const buttons: Button[] = [
   },
 ];
 
-interface SidebarCommandProps {
-  setIsSheetOpen?: Dispatch<SetStateAction<boolean>>;
-}
-
-export const SidebarCommand = ({
-  setIsSheetOpen = undefined,
-}: SidebarCommandProps) => {
+export const SidebarCommand = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { setIsOpen } = useSheetStore();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -113,16 +108,11 @@ export const SidebarCommand = ({
 
     // if there is external link, open it in new tab
     if (externalLink) {
-      if (setIsSheetOpen) {
-        setIsSheetOpen(false);
-      }
       window.open(externalLink, "_blank");
       return;
     }
 
-    if (setIsSheetOpen) {
-      setIsSheetOpen(false);
-    }
+    setIsOpen(false);
 
     if (buttonTitle.toLowerCase() === "home") {
       router.push("/");
