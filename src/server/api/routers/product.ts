@@ -6,14 +6,13 @@ export const productRouter = createTRPCRouter({
   search: publicProcedure
     .input(SearchProductSchema)
     .query(async ({ input, ctx }) => {
-      const { name, limit, cursor, skip, status, categories } = input;
+      const { name, limit, cursor, skip, categories } = input;
 
       const whereQueries: Prisma.ProductWhereInput = {
         name: {
           contains: name,
           mode: "insensitive",
         },
-        status,
         categories: {
           hasSome: categories ?? [
             "household",
@@ -66,6 +65,9 @@ export const productRouter = createTRPCRouter({
         skip: skip,
         cursor: cursor ? { id: cursor } : undefined,
         where: whereQueries,
+        include: {
+          alternatives: true,
+        },
       });
 
       let nextCursor: typeof cursor | undefined = undefined;

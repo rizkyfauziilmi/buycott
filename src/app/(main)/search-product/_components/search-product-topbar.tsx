@@ -1,12 +1,7 @@
 import {
-  Check,
-  ListTree,
-  Meh,
   PackageSearch,
   Search,
   SlidersHorizontal,
-  ThumbsDown,
-  ThumbsUp,
   X,
 } from "lucide-react";
 import {
@@ -19,7 +14,6 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Skeleton } from "~/components/ui/skeleton";
 import { Sheet, SheetContent } from "~/components/ui/sheet";
-import { Status } from "@prisma/client";
 import { capitalizeString } from "~/lib/string";
 import type { z } from "zod";
 import type { SearchProductSchema } from "~/server/api/schemas/product-schemas";
@@ -110,21 +104,6 @@ export const SearchProductTopbar = ({
             >
               Clear All
             </Button>
-            {searchQuery.status && (
-              <Button
-                variant="secondary"
-                className="group space-x-2 rounded-full"
-                onClick={() => {
-                  setSearchQuery((prev) => ({ ...prev, status: undefined }));
-                }}
-              >
-                <div className="flex items-center gap-1">
-                  <p className="text-sm text-muted-foreground">Status:</p>
-                  {capitalizeString(searchQuery.status)}
-                </div>
-                <X className="ml-2 size-4 text-muted-foreground group-hover:text-primary" />
-              </Button>
-            )}
             {searchQuery.categories && (
               <Button variant="secondary" className="space-x-2 rounded-full">
                 <div className="flex items-center gap-1">
@@ -200,50 +179,6 @@ export const SearchProductTopbar = ({
         <SheetContent className="space-y-2">
           <div className="flex items-center gap-2 pb-2">
             <SlidersHorizontal className="mr-2 size-4" /> Filters
-          </div>
-          <Separator />
-          <p>Status</p>
-          <div>
-            <Button
-              className="w-full justify-between"
-              variant="ghost"
-              onClick={() => {
-                setSearchQuery((prev) => ({
-                  ...prev,
-                  status: undefined,
-                }));
-              }}
-            >
-              <div className="flex items-center">
-                <ListTree className="mr-2 size-4" /> All Status
-              </div>
-              {searchQuery.status === undefined && <Check className="size-4" />}
-            </Button>
-            {Object.values(Status).map((status) => (
-              <Button
-                key={status}
-                className="w-full justify-between"
-                variant="ghost"
-                onClick={() => {
-                  setSearchQuery((prev) => ({
-                    ...prev,
-                    status,
-                  }));
-                }}
-              >
-                <div className="flex items-center">
-                  {status === Status.AVOID && (
-                    <ThumbsDown className="mr-2 size-4" />
-                  )}
-                  {status === Status.NEUTRAL && <Meh className="mr-2 size-4" />}
-                  {status === Status.SUPPORT && (
-                    <ThumbsUp className="mr-2 size-4" />
-                  )}
-                  {capitalizeString(status)}
-                </div>
-                {searchQuery.status === status && <Check className="size-4" />}
-              </Button>
-            ))}
           </div>
           <Separator />
           <p>Categories</p>

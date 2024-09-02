@@ -16,7 +16,6 @@ export const SearchProductContent = () => {
   >({
     name: "",
     limit: 9,
-    status: undefined,
   });
 
   const [debounceName] = useDebounce(searchQuery.name, 300);
@@ -34,7 +33,6 @@ export const SearchProductContent = () => {
       {
         limit: searchQuery.limit,
         name: debounceName,
-        status: searchQuery.status,
         categories: searchQuery.categories,
       },
       {

@@ -1,18 +1,18 @@
-import type { Product } from "@prisma/client";
 import { ProductCard } from "./product-card";
 import type { InfiniteData } from "@tanstack/react-query";
 import { ProductCardSkeleton } from "./product-card-skeleton";
 import { ProductCardNotFound } from "./product-card-not-found";
+import type { ProductWithAlternatives } from "types";
 
 interface ProductGridProps {
   data:
     | InfiniteData<
         {
-          items: Product[];
-          nextCursor: number | undefined;
+          items: ProductWithAlternatives[];
+          nextCursor: string | undefined;
           totalProducts: number;
         },
-        number | null
+        string | null
       >
     | undefined;
   isLoading: boolean;
@@ -63,7 +63,7 @@ export const ProductGrid = ({
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
+    <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {renderProduct()}
       {isLoading &&
         Array.from({ length: 9 }).map((_, index) => (
