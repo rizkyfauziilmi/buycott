@@ -33,7 +33,7 @@ export default function RootLayout({
               <div className="hidden w-1/4 md:block">
                 <Sidebar />
               </div>
-              <div className="md:hidden sticky bg-background z-50 top-0">
+              <div className="sticky top-0 z-50 bg-background md:hidden">
                 <Topbar />
               </div>
               <div className="w-full md:w-3/4">{children}</div>

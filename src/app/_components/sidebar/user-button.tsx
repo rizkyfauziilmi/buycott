@@ -2,16 +2,12 @@
 
 import type { Session } from "next-auth";
 
-import {
-  abbreviateEmail,
-  generateFallbackName,
-  truncateText,
-} from "~/lib/string";
+import { generateFallbackName } from "~/lib/string";
 
+import { LogOut, Wrench } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
-import { LogOut } from "lucide-react";
-import { signOut } from "next-auth/react";
 
 interface UserButtonProps {
   session: Session;
@@ -30,12 +26,13 @@ export const UserButton = ({ session }: UserButtonProps) => {
           </AvatarFallback>
         </Avatar>
         <div>
-          <small className="text-sm font-medium leading-none">
-            {truncateText(user.name ?? "", 12)}
+          <small className="flex text-sm font-medium leading-none">
+            {session.user.role === "ADMIN" && (
+              <Wrench className="mr-2 size-4 text-blue-500" />
+            )}
+            {user.name}
           </small>
-          <p className="text-xs text-muted-foreground">
-            {abbreviateEmail(user.email ?? "")}
-          </p>
+          <p className="text-xs text-muted-foreground">{user.email}</p>
         </div>
       </div>
       <Button

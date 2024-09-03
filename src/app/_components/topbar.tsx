@@ -25,7 +25,7 @@ export const Topbar = () => {
         <Menu className="size-4" />
       </Button>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent className="overflow-y-auto">
+        <SheetContent className="overflow-y-auto w-full">
           <SheetHeader className="pb-4">
             <SheetTitle>Menu</SheetTitle>
             <SheetDescription>

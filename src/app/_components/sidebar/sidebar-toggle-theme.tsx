@@ -20,6 +20,7 @@ export const SidebarToggleTheme = () => {
       </Button>
       <Button
         variant="ghost"
+        size="sm"
         className="flex-1 rounded-lg bg-secondary transition-all hover:bg-background dark:bg-background"
         onClick={() => setTheme("dark")}
       >

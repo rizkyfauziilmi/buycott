@@ -14,6 +14,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 model Product {
   id           String        @id @default(cuid())
   name         String
@@ -25,6 +30,10 @@ model Product {
   website      String?
   logo_url     String?
   alternatives Alternative[]
+  isApproved   Boolean       @default(false)
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -80,6 +89,8 @@ model User {
   password      String? // @db.Text
   accounts      Account[]
   sessions      Session[]
+  Product       Product[]
+  role          UserRole      @default(USER)
 }
 
 model VerificationToken {

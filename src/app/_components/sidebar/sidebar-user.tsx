@@ -1,15 +1,15 @@
-"use client";
-
-import { UserButton } from "./user-button";
+import type { Session } from "next-auth";
 import { LoginButton } from "../login-button";
-import { api } from "~/trpc/react";
+import { UserButton } from "./user-button";
 
-export const SidebarUser = () => {
-  const { data: session } = api.user.getCurrentUser.useQuery();
+interface SidebarUserProps {
+	session: Session | null | undefined;
+}
 
-  if (!session) {
-    return <LoginButton />;
-  }
+export const SidebarUser = ({ session }: SidebarUserProps) => {
+	if (!session) {
+		return <LoginButton />;
+	}
 
-  return <UserButton session={session} />;
+	return <UserButton session={session} />;
 };
